@@ -2,7 +2,6 @@
 #include <SoftwareSerial.h>
 
 SoftwareSerial externalDevice(2, 3);
-byte incomingByte;
 
 void setup()
 {
@@ -14,12 +13,10 @@ void loop()
 {
   if (externalDevice.available())
   {
-    incomingByte = externalDevice.read();
-    Serial.write(incomingByte);
+    Serial.write(externalDevice.read());
   }
   if (Serial.available())
   {
-    incomingByte = Serial.read();
-    externalDevice.print(incomingByte);
+    externalDevice.print(Serial.read());
   }
 }
