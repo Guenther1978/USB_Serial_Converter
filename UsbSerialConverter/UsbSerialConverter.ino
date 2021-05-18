@@ -6,16 +6,17 @@ SoftwareSerial externalDevice(2, 3);
 void setup()
 {
   Serial.begin(9600);
+  while(!Serial);
   externalDevice.begin(9600);
 }
 
 void loop()
 {
-  if (externalDevice.available())
+  while (externalDevice.available())
   {
     Serial.write(externalDevice.read());
   }
-  if (Serial.available())
+  while (Serial.available())
   {
     externalDevice.print(Serial.read());
   }
